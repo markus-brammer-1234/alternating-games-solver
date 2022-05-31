@@ -1,0 +1,24 @@
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/RailwayLib/bin/Debug/net6.0/RailwayLib.deps.json
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/RailwayLib/bin/Debug/net6.0/RailwayLib.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/RailwayLib/bin/Debug/net6.0/RailwayLib.pdb
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/RailwayLib/obj/Debug/net6.0/RailwayLib.fsproj.AssemblyReference.cache
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/RailwayLib/obj/Debug/net6.0/RailwayLib.AssemblyInfoInputs.cache
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/RailwayLib/obj/Debug/net6.0/RailwayLib.AssemblyInfo.fs
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/RailwayLib/obj/Debug/net6.0/RailwayLib.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/RailwayLib/obj/Debug/net6.0/RailwayLib.pdb
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/RailwayLib/bin/Debug/net6.0/RailwayLib.deps.json
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/RailwayLib/bin/Debug/net6.0/RailwayLib.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/RailwayLib/bin/Debug/net6.0/RailwayLib.pdb
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/RailwayLib/obj/Debug/net6.0/RailwayLib.fsproj.AssemblyReference.cache
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/RailwayLib/obj/Debug/net6.0/RailwayLib.AssemblyInfoInputs.cache
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/RailwayLib/obj/Debug/net6.0/RailwayLib.AssemblyInfo.fs
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/RailwayLib/obj/Debug/net6.0/RailwayLib.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/RailwayLib/obj/Debug/net6.0/RailwayLib.pdb
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\RailwayLib\bin\Debug\net6.0\RailwayLib.deps.json
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\RailwayLib\bin\Debug\net6.0\RailwayLib.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\RailwayLib\bin\Debug\net6.0\RailwayLib.pdb
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\RailwayLib\obj\Debug\net6.0\RailwayLib.fsproj.AssemblyReference.cache
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\RailwayLib\obj\Debug\net6.0\RailwayLib.AssemblyInfoInputs.cache
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\RailwayLib\obj\Debug\net6.0\RailwayLib.AssemblyInfo.fs
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\RailwayLib\obj\Debug\net6.0\RailwayLib.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\RailwayLib\obj\Debug\net6.0\RailwayLib.pdb

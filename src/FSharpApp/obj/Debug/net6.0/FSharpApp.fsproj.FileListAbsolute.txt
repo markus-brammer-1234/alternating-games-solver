@@ -1,0 +1,96 @@
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/FSharpApp
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/FSharpApp.deps.json
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/FSharpApp.runtimeconfig.json
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/FSharpApp.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/FSharpApp.pdb
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/FSharp.Core.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/FsLexYacc.Runtime.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/cs/FSharp.Core.resources.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/de/FSharp.Core.resources.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/es/FSharp.Core.resources.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/fr/FSharp.Core.resources.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/it/FSharp.Core.resources.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/ja/FSharp.Core.resources.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/ko/FSharp.Core.resources.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/pl/FSharp.Core.resources.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/pt-BR/FSharp.Core.resources.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/ru/FSharp.Core.resources.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/tr/FSharp.Core.resources.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/zh-Hans/FSharp.Core.resources.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/zh-Hant/FSharp.Core.resources.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/RailwayLib.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/SolverLib.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/SolverLib.pdb
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/SolverLib.xml
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/RailwayLib.pdb
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/obj/Debug/net6.0/FSharpApp.fsproj.AssemblyReference.cache
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/obj/Debug/net6.0/FSharpApp.AssemblyInfoInputs.cache
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/obj/Debug/net6.0/FSharpApp.AssemblyInfo.fs
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/obj/Debug/net6.0/FSharpApp.fsproj.CopyComplete
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/obj/Debug/net6.0/FSharpApp.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/obj/Debug/net6.0/FSharpApp.pdb
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/FSharpApp/obj/Debug/net6.0/FSharpApp.genruntimeconfig.cache
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/FSharpApp
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/FSharpApp.deps.json
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/FSharpApp.runtimeconfig.json
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/FSharpApp.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/FSharpApp.pdb
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/FSharp.Core.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/FsLexYacc.Runtime.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/cs/FSharp.Core.resources.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/de/FSharp.Core.resources.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/es/FSharp.Core.resources.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/fr/FSharp.Core.resources.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/it/FSharp.Core.resources.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/ja/FSharp.Core.resources.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/ko/FSharp.Core.resources.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/pl/FSharp.Core.resources.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/pt-BR/FSharp.Core.resources.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/ru/FSharp.Core.resources.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/tr/FSharp.Core.resources.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/zh-Hans/FSharp.Core.resources.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/zh-Hant/FSharp.Core.resources.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/RailwayLib.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/SolverLib.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/SolverLib.pdb
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/SolverLib.xml
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/bin/Debug/net6.0/RailwayLib.pdb
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/obj/Debug/net6.0/FSharpApp.fsproj.AssemblyReference.cache
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/obj/Debug/net6.0/FSharpApp.AssemblyInfoInputs.cache
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/obj/Debug/net6.0/FSharpApp.AssemblyInfo.fs
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/obj/Debug/net6.0/FSharpApp.fsproj.CopyComplete
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/obj/Debug/net6.0/FSharpApp.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/obj/Debug/net6.0/FSharpApp.pdb
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/FSharpApp/obj/Debug/net6.0/FSharpApp.genruntimeconfig.cache
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\obj\Debug\net6.0\FSharpApp.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\obj\Debug\net6.0\FSharpApp.pdb
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\FSharpApp.exe
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\FSharpApp.deps.json
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\FSharpApp.runtimeconfig.json
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\FSharpApp.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\FSharpApp.pdb
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\FSharp.Core.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\FsLexYacc.Runtime.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\cs\FSharp.Core.resources.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\de\FSharp.Core.resources.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\es\FSharp.Core.resources.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\fr\FSharp.Core.resources.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\it\FSharp.Core.resources.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\ja\FSharp.Core.resources.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\ko\FSharp.Core.resources.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\pl\FSharp.Core.resources.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\pt-BR\FSharp.Core.resources.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\ru\FSharp.Core.resources.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\tr\FSharp.Core.resources.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\zh-Hans\FSharp.Core.resources.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\zh-Hant\FSharp.Core.resources.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\RailwayLib.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\SolverLib.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\SolverLib.pdb
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\SolverLib.xml
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\bin\Debug\net6.0\RailwayLib.pdb
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\obj\Debug\net6.0\FSharpApp.fsproj.AssemblyReference.cache
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\obj\Debug\net6.0\FSharpApp.AssemblyInfoInputs.cache
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\obj\Debug\net6.0\FSharpApp.AssemblyInfo.fs
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\obj\Debug\net6.0\FSharpApp.fsproj.CopyComplete
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\FSharpApp\obj\Debug\net6.0\FSharpApp.genruntimeconfig.cache

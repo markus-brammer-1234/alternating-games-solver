@@ -1,0 +1,30 @@
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/SolverLib/bin/Debug/net6.0/SolverLib.deps.json
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/SolverLib/bin/Debug/net6.0/SolverLib.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/SolverLib/bin/Debug/net6.0/SolverLib.pdb
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/SolverLib/bin/Debug/net6.0/SolverLib.xml
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/SolverLib/obj/Debug/net6.0/SolverLib.fsproj.AssemblyReference.cache
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/SolverLib/obj/Debug/net6.0/SolverLib.AssemblyInfoInputs.cache
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/SolverLib/obj/Debug/net6.0/SolverLib.AssemblyInfo.fs
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/SolverLib/obj/Debug/net6.0/SolverLib.dll
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/SolverLib/obj/Debug/net6.0/SolverLib.xml
+/home/markus/Documents/university/bachelor/sem-4-f22/bachelor-thesis/project/src/SolverLib/obj/Debug/net6.0/SolverLib.pdb
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/SolverLib/bin/Debug/net6.0/SolverLib.deps.json
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/SolverLib/bin/Debug/net6.0/SolverLib.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/SolverLib/bin/Debug/net6.0/SolverLib.pdb
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/SolverLib/bin/Debug/net6.0/SolverLib.xml
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/SolverLib/obj/Debug/net6.0/SolverLib.fsproj.AssemblyReference.cache
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/SolverLib/obj/Debug/net6.0/SolverLib.AssemblyInfoInputs.cache
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/SolverLib/obj/Debug/net6.0/SolverLib.AssemblyInfo.fs
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/SolverLib/obj/Debug/net6.0/SolverLib.dll
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/SolverLib/obj/Debug/net6.0/SolverLib.xml
+/home/markus/Documents/university/b4-f22/bachelor-thesis/project/src/SolverLib/obj/Debug/net6.0/SolverLib.pdb
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\SolverLib\obj\Debug\net6.0\SolverLib.fsproj.AssemblyReference.cache
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\SolverLib\obj\Debug\net6.0\SolverLib.AssemblyInfoInputs.cache
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\SolverLib\obj\Debug\net6.0\SolverLib.AssemblyInfo.fs
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\SolverLib\obj\Debug\net6.0\SolverLib.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\SolverLib\obj\Debug\net6.0\SolverLib.xml
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\SolverLib\obj\Debug\net6.0\SolverLib.pdb
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\SolverLib\bin\Debug\net6.0\SolverLib.deps.json
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\SolverLib\bin\Debug\net6.0\SolverLib.dll
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\SolverLib\bin\Debug\net6.0\SolverLib.pdb
+C:\Users\Markus\Documents\University\BSc04-F22\Bachelor Thesis\project\src\SolverLib\bin\Debug\net6.0\SolverLib.xml

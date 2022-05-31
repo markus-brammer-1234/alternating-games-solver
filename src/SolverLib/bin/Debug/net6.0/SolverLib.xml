@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>SolverLib</name></assembly>
+<members>
+<member name="F:Solver.Solver.deps">
+<summary>
+ Dependencies assignments [liu1998a]
+</summary>
+</member>
+<member name="F:Solver.Solver.approx">
+<summary>
+ Approximation assignments and  from [liu1998a].
+</summary>
+</member>
+<member name="M:Solver.Solver.liuSmolka(System.Int32)">
+<summary>
+ Run LiuSmolka algorithm on an initial node using this solver. 
+</summary>
+</member>
+<member name="M:Solver.SolverModule.liuSmolka(System.Int32,Solver.Solver)">
+<summary>
+ Run LiuSmolka algorithm from a given initial node on a given Solver. 
+</summary>
+</member>
+<member name="M:Solver.SolverModule.ofList(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Collections.FSharpList{System.Int32}}})">
+<summary>
+ Create solver from hyper edge list list. 
+</summary>
+</member>
+<member name="M:Solver.SolverModule.ofArray(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Collections.FSharpList{System.Int32}}[])">
+<summary>
+ Create solver from hyper edge list array. 
+</summary>
+</member>
+</members>
+</doc>

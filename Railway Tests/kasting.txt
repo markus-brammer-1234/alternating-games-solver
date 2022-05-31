@@ -1,0 +1,6 @@
+connections = 
+    s10.up -> s11.plus, 
+    s20.up -> s11.minus, 
+    s11.stem -> s12.down 
+signals = s20.up, s10.down
+trains = s20 -> s12, s12 -> s10

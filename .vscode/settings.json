@@ -1,0 +1,10 @@
+{
+    "files.exclude": {
+        "**/.idea": true,
+        "**/.ionide": true,
+        "**/.vscode": true,
+        "**/bin": true,
+        "**/obj": true
+    },
+    "editor.inlayHints.enabled": "offUnlessPressed"
+}
