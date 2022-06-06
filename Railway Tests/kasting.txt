@@ -2,5 +2,5 @@ connections =
     s10.up -> s11.plus, 
     s20.up -> s11.minus, 
     s11.stem -> s12.down 
-signals = s20.up, s10.down
+signals = s20, s10
 trains = s20 -> s12, s12 -> s10

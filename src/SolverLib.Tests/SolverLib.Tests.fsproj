@@ -8,6 +8,7 @@
   <ItemGroup>
     <Compile Include="Horn.fs" />
     <Compile Include="HornTests.fs" />
+    <Compile Include="OnTheFlySolverTests.fs" />
     <Compile Include="SimpleLiuSmolkaTests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

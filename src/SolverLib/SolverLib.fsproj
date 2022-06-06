@@ -5,8 +5,8 @@
     <RootNamespace>DepGraphLib</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="LiuSmolkaSolver.fs" />
     <Compile Include="OnTheFlySolver.fs" />
+    <Compile Include="LiuSmolkaSolver.fs" />
     <Compile Include="Game.fs" />
   </ItemGroup>
 </Project>

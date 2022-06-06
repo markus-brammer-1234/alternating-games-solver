@@ -10,15 +10,11 @@ type Port =
     | P of string // Plus (default) branch of point.
     | M of string // Minus branch of point.
 
-type SignalDir =
-    | Up
-    | Down
-
 type Network =
     | N of
         Map<Port, Port> *  // Connections (down to up).
-        Map<string, SignalDir> *  // Signals.
-        Map<string, string> // Trains' initial and final locations.
+        Set<Port> *  // Set of ALL signal placements.
+        List<Port * Port> // Trains' initial and final locations.
 
 
 module ParserFunctions =
@@ -119,9 +115,8 @@ module NetworkFunctions =
         // Trains' initial and final location placed on an existing linear
         // segment. 
         && Map.forall
-            (fun init final ->
-                Set.exists ((=) init) linears
-                && Set.exists ((=) final) linears)
+            (fun init final -> 
+                Set.contains init linears && Set.contains final linears)
             ts
 
         // Trains cannot have the same final position.
@@ -130,3 +125,26 @@ module NetworkFunctions =
         // No cycles.
         // TODO Implement. 
         && true
+
+module GameFunctions = 
+
+    open OnTheFlySolver
+
+    type TrainGameState = 
+        Port array *    // Positions of trains travelling UP
+        Port array *    // Positions of trains tavelling DOWN 
+        Set<Port> *     // Positions of signals that allow passage. 
+        Set<string>     // Points in MINUS.  
+
+
+    // type TrainGameState = 
+    //     | T of 
+    
+
+    // let toGame (N (cs, ss, ts)) = 
+
+    //     let initState 
+
+
+
+

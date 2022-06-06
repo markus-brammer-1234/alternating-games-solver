@@ -20,4 +20,7 @@
   <ItemGroup>
     <PackageReference Include="FsLexYacc" Version="10.2.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SolverLib\SolverLib.fsproj" />
+  </ItemGroup>
 </Project>

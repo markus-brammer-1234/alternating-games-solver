@@ -1,5 +1,3 @@
-// IT NEED NOT BE PURELY FUNCTIONAL!
-
 module OnTheFlySolver
 
 open System.Collections.Generic
@@ -19,27 +17,31 @@ type Vertex = int
 
 type Config<'S> = 'S * Player
 
-// 'S is for state.
-// TODO For railway networks, the state can be a triple of trains pos., signal
-// lights, and points.
+type OnTheFlySolver<'S when 'S: comparison>
+    (
+        game: Game<'S>,
+        simRel: Config<'S> -> Config<'S> -> bool,
+        initConfig: Config<'S>
+    ) =
 
-type OnTheFlySolver<'S when 'S: comparison>(game: Game<'S>, sim: Config<'S> -> Config<'S> -> bool, initState: 'S) =
+    let edgesOne, edgesTwo, goals = game
 
-    // Extract entities from the game definition.
-    let edges1, edges2, goals = game
+    // Reversed simulation relation.
+    let revSimRel c2 c1 = simRel c1 c2
 
     // Sets for keeping track of winning an losing strategies.
-    let win = new HashSet<Vertex>()
-    let lose = new HashSet<Vertex>()
+    let mutable win = Set.empty
+    let mutable lose = Set.empty
 
     // Dependencies when processesing a given vertex.
-    let deps = new List<(Vertex * Vertex list) list>()
+    // TODO Note the only place where the vertex even matters.
+    let deps = new List<('S * Player * 'S) list>()
 
     // A set of already-discovered vertices.
     let disc = new HashSet<Vertex>()
 
     // Connect internal (vertices) and external (configuration) representation.
-    // Note to self: It makes sense to use the configs as the vertices because of how the algorithm indexes. 
+    // Note to self: It makes sense to use the configs as the vertices because of how the algorithm indexes.
     let toConfig = new List<Config<'S>>()
     let toVertex = new Dictionary<Config<'S>, Vertex>()
 
@@ -49,214 +51,130 @@ type OnTheFlySolver<'S when 'S: comparison>(game: Game<'S>, sim: Config<'S> -> C
         | false, _ ->
             // A newly discovered state with no associated vertex.
             toConfig.Add state
+            deps.Add []
             let vertex = toConfig.Count - 1
             toVertex.Add(state, vertex)
 
             vertex
 
-    // Transition functions are here simply the edge relations.
-    let trans1 state = edges1 state
-    let trans2 state = edges2 state
+    let getSuccessorConfigs (state, player) : Set<Config<'S>> =
+        // Get the set of successor states from the relevant edges function.
+        match player with
+        | One ->
+            // Player One can also (always) perform the empty action, i.e. stay in current state.
+            edgesOne state |> Set.add state
+        | Two ->
+            let successorStates = edgesTwo state
 
-    /// Get a set of possible transitions from a vertex for a given player.
-    let trans vertex =
-        let state, player = toConfig.[vertex]
+            // Player Two can only perform empty actions when non other available.
+            if Set.isEmpty successorStates then
+                set [ state ]
+            else
+                successorStates
 
-        let nextStates =
-            match player with
-            | One -> trans1 state
-            | Two -> trans2 state
+        // In the successor state set, convert the states to configurations.
+        |> Set.map (fun state' -> state', next player)
 
-        Set.map (fun s -> (s, next player)) nextStates
-
-    let load vertex wait =
+    let load config wait =
         // Only difference between MinSucc and MaxSucc is the following predicate.
         let minMaxSuccPred ((_, i') as c') ((_, i'') as c'') =
             match i', i'' with
-            | One, One -> sim c' c''
-            | Two, Two -> sim c'' c'
-            | _ -> failwith "Simulation relations only legal for same player."
+            | One, One -> simRel c' c''
+            | Two, Two -> simRel c'' c'
+            | _ -> false
 
-        // Function to collect the successors in MinSucc or MaxSucc into a list.
-        let collect (s, i) (ws, ms) ((s', _) as c') =
-            if Set.exists (minMaxSuccPred c') ms then
-                (ws, ms)
-            else
-                ((s, i, s') :: ws, Set.add c' ms)
-
-        let succs = trans vertex
+        let collect (s, i) (ws, ms) =
+            function
+            | c' when Set.exists (minMaxSuccPred c') ms -> ws, ms
+            | (s', _) as c' -> (s, i, s') :: ws, Set.add c' ms
 
         // Return the updated list of waiting edges.
-        Set.fold (collect toConfig.[vertex]) (wait, Set.empty) succs
+        getSuccessorConfigs config
+        |> Set.fold (collect config) (wait, Set.empty)
         |> fst
 
+    // A configuration have been found that deems the game either won or lost.
+    let wonOrLost =
+        Set.exists (revSimRel initConfig) win
+        || Set.exists (simRel initConfig) lose
 
+    let isLosingConfig (state, player as config) =
 
+        Set.exists (simRel config) lose
+        || (player = One
+            && getSuccessorConfigs config
+               |> Set.forall (fun c' -> Set.exists (simRel c') lose))
+        || (player = Two
+            && getSuccessorConfigs config
+               |> Set.exists (fun c' -> Set.exists (simRel c') lose))
+        || (player = Two
+            && Set.exists (fun (s', _) -> simRel (s', One) (state, One)) lose) //
+        || (Set.isEmpty (edgesOne state)
+            && Set.isEmpty (edgesTwo state))
 
+    let isWinningConfig (_, player as config) =
 
+        Set.exists (revSimRel config) win
+        || (player = One
+            && getSuccessorConfigs config
+               |> Set.exists (fun c' -> Set.exists (simRel c') win))
+        || (player = Two
+            && getSuccessorConfigs config
+               |> Set.forall (fun c' -> Set.exists (simRel c') win))
 
+    let inWinLose config =
+        Set.contains config win
+        || Set.contains config lose
 
+    let rec addDeps (state, player) wait =
+        function
+        | [] -> wait
+        | (s'', p', s') :: ds when
+            s' = state
+            && p' = next player
+            && inWinLose (s'', p')
+            ->
+            addDeps (state, player) wait ds
+        | d :: ds -> addDeps (state, player) (d :: wait) ds
 
-// /// AddSuccessors
-// let load v i wait =
-//     let (s, _) = toState.[v]
-//     let ts = trans (s, i)
+    let addToLose wait c =
+        lose <- Set.add c lose
+        deps.[vertexOf c] |> addDeps c wait
 
-//     // MaxSucc or MinSucc respectively dependant on player.
-//     let pred (s', _) (s'', _) =
-//         match i with
-//         | One -> sim (s'', i) (s', i)
-//         | Two -> sim (s', i) (s'', i)
+    let addToWin wait c =
+        win <- Set.add c win
+        deps.[vertexOf c] |> addDeps c wait
 
-//     // Get the successors and load them into the waiting list.
-//     // ms is the set of max/min succesors, only needed when adding to wait.
-//     Set.fold
-//         (fun (ms, ws) (s', _) ->
-//             if Set.exists (fun (s'', _) -> pred (s', i) (s'', i)) ms then
-//                 (ms, ws)
-//             else
-//                 (Set.add (s', i) ms, (s, i, s') :: ws))
-//         (Set.empty, wait)
-//         ts
-//     |> snd
+    // Taking an input win' unlike before where I just had finalCheck be a value and used win as the set. This does not work as finalCheck becomes a static boolean value of false.
+    let finalCheck win' = Set.exists (revSimRel initConfig) win'
 
-// let noWinLose v0 =
-//     let (_, i0) as c = toState.[v0]
+    let rec loop wait =
+        match wait with
+        | [] -> finalCheck win
+        | _ when wonOrLost -> finalCheck win
+        | (s1, i, _) :: waitrest when inWinLose (s1, i) -> loop waitrest
+        | (s1, i, _) :: waitrest when isLosingConfig (s1, i) -> addToLose waitrest (s1, i) |> loop
+        | (s1, i, _) :: waitrest when isWinningConfig (s1, i) -> addToWin waitrest (s1, i) |> loop
+        | (_, i, s2) :: waitrest when inWinLose (s2, next i) -> loop waitrest
+        | (s1, i, s2) :: waitrest when disc.Contains(vertexOf (s2, next i)) ->
+            let v = vertexOf (s2, next i)
+            deps.[v] <- (s1, i, s2) :: deps.[v]
+            loop waitrest
+        | (s1, i, s2) :: waitrest ->
+            let config = s2, next i
+            let v = vertexOf config
+            disc.Add(v) |> ignore
+            deps.[v] <- [ (s1, i, s2) ]
 
-//     not (Set.forall (fun s' -> sim (s', i0) c && win.[v0] = Some true) states)
-//     && not (Set.forall (fun s' -> sim c (s', i0) && lose.[v0] = Some true) states)
+            if Set.contains s2 goals then
+                addToWin wait config |> loop
+            else
+                load config waitrest |> loop
 
-// member this.solve initConfig =
-//     // Reset data.
-//     win.Clear()
-//     lose.Clear()
-//     deps.Clear()
-//     disc.Clear()
-//     toNode.Clear()
-//     toVertex.Clear()
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let placeholder config = 1
-
-// let succ (transI: List<'S list>) config = transI.[placeholder config]
-
-// let maxSucc sim transI config =
-//     List.fold
-//         (fun ms c' ->
-//             if Set.exists (fun c'' -> sim c'' c') ms then
-//                 ms
-//             else
-//                 Set.add c' ms)
-//         Set.empty
-//         (succ transI config)
-
-// let minSucc sim transI config =
-//     List.fold
-//         (fun ms c' ->
-//             if Set.exists (sim c') ms then
-//                 ms
-//             else
-//                 Set.add c' ms)
-//         Set.empty
-//         (succ transI config)
-
-// let load wait sim transI ((s, p) as config) =
-//     match p with
-//     | One -> maxSucc sim transI config
-//     | Two -> maxSucc sim transI config
-//     |> Set.fold (fun wait' (s', _) -> (s, p, s') :: wait') wait
-
-// let placeholder2 (c: Config<'S>) : Config<'S> = c
-
-// let solve game sim ((s0, i0) as initConfig) =
-//     let (s, a1, a2, n1, n2, g) = game
-
-//     let mutable win, lose = Set.empty, Set.empty
-
-//     let mutable disc = Set.add initConfig Set.empty
-
-//     let mutable deps = Map.add (initConfig, []) Map.empty
-
-//     let wait = load [] sim placeholder2 config
-
-//     let b1 sim wait ((s0, i0) as c) =
-//         not (Set.forall (fun s' -> sim (s',i0) c &&  Set.contains (s',i0) win) s)
-//         && not (Set.forall (fun s' -> sim c (s',i0) &&  Set.contains (s',i0) lose) s)
-//         && not (List.isEmpty wait)
-
-//     let b2 = true
-
-//     let b3 = true
-
-//     let addToWin wait s i =
-//         win <- Set.add (s, i) win
-
-
-//     let rec loop wait' =
-//         if b1 sim wait initConfig then ()
-
-//         let (s1, i, s2), tail = List.head wait', List.tail wait'
-//         if Set.contains (s1, i) (Set.union win lose) then loop tail
-
-//         if b2 then
-
-
-
-
-//     loop wait initConfig
-
-//     Set.exists (fun s' -> sim (s', i0) (s0, i0)) s
-
-
-// let next player =
-//     match player with
-//     | One -> Two
-//     | Two -> One
-//
-// let maxSucc trans sim
-//
-// let minSuccFold sim ms c' =
-//     if Set.exists (sim c') ms then
-//         ms
-//     else
-//         Set.add c' ms
-//
-// let addSuccessors edges wait (s, i) sim =
-//     (wait, edges (s, i)List.fold foldFun wait (edges (s, i))
-//     |> List.map ()
-//
-// let solveGame<'S when 'S : comparison> edges goal sim initConfig =
-//
-//     let win, lose = new HashSet<Config<'S>>(), new HashSet<Config<'S>>()
-//
-//     let disc = new HashSet<Config<'S>>()
-//     disc.Add(initConfig) |> ignore
-//
-//     let deps = new Dictionary<Config<'S>, Config<'S> list list>()
-//     deps.Add(initConfig, [])
-//
-//     let wait = addSuccessors edges [] initConfig
-//
-//     if Set.contains initConfig goal then
-//         win.Add(initConfig) |> ignore
-//
-//     while not (List.isEmpty wait) do
-//         let (s1, i, s2), wait = List.head wait, List.tail wait
-
-
-
-
+    member _.solve =
+        disc.Add(vertexOf initConfig) |> ignore
+        // if Set.contains s0 goals then addToWin initConfig
+        load initConfig [] |> loop
 
 // TODO Does it make sense to always convert to and from intergers? Could
 // the win and dependencies arraylists be dictionaries in stead?
@@ -274,3 +192,6 @@ type OnTheFlySolver<'S when 'S: comparison>(game: Game<'S>, sim: Config<'S> -> C
 //   https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1?view=net-6.0
 // - Dictionary is implemented as a hash table:
 //   https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1?view=net-6.0
+
+
+// Assuming i1 <> i2 => not (sim (s1, i1) (s2, i2))
