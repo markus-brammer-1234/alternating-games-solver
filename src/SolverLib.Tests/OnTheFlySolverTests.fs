@@ -10,27 +10,31 @@ open Xunit
 // |----| |----| |----| 
 //   L2     P1     L3
 //
-// A tuple of train position and point connection (+ or -). 
-// Train can only drive in one direction.
+// Representation: A tuple (double) of train position and point connection (+ or -): 
+//      (t, p) where t in {L1, L2, L3, crash}, p in {+, -}. 
+// 
+// Train can only drive in one direction, here right to left.
 let simpleGame = 
     let edges1 (pos, _) = set [ (pos, "+"); (pos, "-") ]
 
     let edges2 = 
         function 
         | ("L3", p) when p = "+" -> set [ ("L2", p) ]
-        | ("L3", p) when p = "-" -> set [ ("Crash", p) ]
-        | _ -> set []
+        | ("L3", p) when p = "-" -> set [ ("L1", p) ]
+        | ("L1", p) -> set [ ("crash", p) ]
+        | ("L2", p) -> set [ ("crash", p) ]
+        | _ -> set [ ]
 
     let goal = set [ ("L2", "+"); ("L2", "-") ]
 
-    (edges1, edges2, goal)
+    edges1, edges2, goal
     
 [<Fact>]
-let ``Simple on the fly solver`` () = 
+let ``On-the-fly solver solves simple, legal game`` () = 
     let solver = new OnTheFlySolver<string * string>(simpleGame, (=), (("L3", "-"), One))
     Assert.True(solver.solve) 
     
 [<Fact>]
-let ``Simple on the fly solver 2`` () = 
+let ``On-the-fly solver cannot solve simple, illegal game`` () = 
     let solver = new OnTheFlySolver<string * string>(simpleGame, (=), (("L1", "+"), One))
     Assert.False(solver.solve) 

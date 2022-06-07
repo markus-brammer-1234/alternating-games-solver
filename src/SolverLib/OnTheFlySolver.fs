@@ -34,17 +34,16 @@ type OnTheFlySolver<'S when 'S: comparison>
     let mutable lose = Set.empty
 
     // Dependencies when processesing a given vertex.
-    // TODO Note the only place where the vertex even matters.
     let deps = new List<('S * Player * 'S) list>()
 
     // A set of already-discovered vertices.
     let disc = new HashSet<Vertex>()
 
     // Connect internal (vertices) and external (configuration) representation.
-    // Note to self: It makes sense to use the configs as the vertices because of how the algorithm indexes.
     let toConfig = new List<Config<'S>>()
     let toVertex = new Dictionary<Config<'S>, Vertex>()
 
+    // Get the vertex of a given state if it exists. If not, create and return one.
     let vertexOf state =
         match toVertex.TryGetValue(state) with
         | true, vertex -> vertex
@@ -57,8 +56,8 @@ type OnTheFlySolver<'S when 'S: comparison>
 
             vertex
 
+    // Get the set of successor states from the relevant edges function.
     let getSuccessorConfigs (state, player) : Set<Config<'S>> =
-        // Get the set of successor states from the relevant edges function.
         match player with
         | One ->
             // Player One can also (always) perform the empty action, i.e. stay in current state.
@@ -72,60 +71,68 @@ type OnTheFlySolver<'S when 'S: comparison>
             else
                 successorStates
 
-        // In the successor state set, convert the states to configurations.
+        // In the successor state set, assign next player to the states thus making them configurations.
         |> Set.map (fun state' -> state', next player)
 
-    let load config wait =
-        // Only difference between MinSucc and MaxSucc is the following predicate.
-        let minMaxSuccPred ((_, i') as c') ((_, i'') as c'') =
-            match i', i'' with
-            | One, One -> simRel c' c''
-            | Two, Two -> simRel c'' c'
-            | _ -> false
-
-        let collect (s, i) (ws, ms) =
+    let addSuccessors config wait =
+        // Auxiliary function to use as folder. Loads waiting list ws
+        // while keeping track of minimum/maximum successors in ms.
+        let getNewSuccessors (state, player) (ws, ms) =
             function
-            | c' when Set.exists (minMaxSuccPred c') ms -> ws, ms
-            | (s', _) as c' -> (s, i, s') :: ws, Set.add c' ms
+            | config' when player = One && Set.exists (simRel config') ms -> ws, ms
+            | config' when player = Two && Set.exists (revSimRel config') ms -> ws, ms
+            | state', _ as config' -> (state, player, state') :: ws, Set.add config' ms
 
-        // Return the updated list of waiting edges.
+        // Tuple of the updated waiting list along with a set of min/max successors.
         getSuccessorConfigs config
-        |> Set.fold (collect config) (wait, Set.empty)
+        |> Set.fold (getNewSuccessors config) (wait, Set.empty)
+
+        // Only return the waiting list, _not_ the set of min/max successors.
         |> fst
 
-    // A configuration have been found that deems the game either won or lost.
-    let wonOrLost =
-        Set.exists (revSimRel initConfig) win
-        || Set.exists (simRel initConfig) lose
 
-    let isLosingConfig (state, player as config) =
-
+    let inLosingStrategy (state, player as config) =
+        // The config simulates a losing strategy, or
         Set.exists (simRel config) lose
+
+        // (player One) all successors simulates a losing strategy, or
         || (player = One
             && getSuccessorConfigs config
                |> Set.forall (fun c' -> Set.exists (simRel c') lose))
+
+        // (player Two) a successor simulates a losing strategy, or
         || (player = Two
             && getSuccessorConfigs config
                |> Set.exists (fun c' -> Set.exists (simRel c') lose))
+
+        // (player Two) a losing config is simulated by a config consisting of
+        // the given state but with player One in stead, or
         || (player = Two
-            && Set.exists (fun (s', _) -> simRel (s', One) (state, One)) lose) //
+            && Set.exists (simRel (state, One)) lose)
+
+        // non of the players can move.
         || (Set.isEmpty (edgesOne state)
             && Set.isEmpty (edgesTwo state))
 
-    let isWinningConfig (_, player as config) =
-
+    let inWinningStrategy (_, player as config) =
+        // A winning simulation simulates the config, or
         Set.exists (revSimRel config) win
+
+        // (player One) a successor simulates a winning strategy, or
         || (player = One
             && getSuccessorConfigs config
                |> Set.exists (fun c' -> Set.exists (simRel c') win))
+
+        // (player Two) all successors are simulated by a winning strategy.
         || (player = Two
             && getSuccessorConfigs config
-               |> Set.forall (fun c' -> Set.exists (simRel c') win))
+               |> Set.forall (fun c' -> Set.exists (revSimRel c') win))
 
     let inWinLose config =
         Set.contains config win
         || Set.contains config lose
 
+    // Add dependencies to waiting list conditionally.
     let rec addDeps (state, player) wait =
         function
         | [] -> wait
@@ -134,27 +141,28 @@ type OnTheFlySolver<'S when 'S: comparison>
             && p' = next player
             && inWinLose (s'', p')
             ->
+            // _Skip_ deps that _are_ in the win or lose set.
             addDeps (state, player) wait ds
         | d :: ds -> addDeps (state, player) (d :: wait) ds
 
-    let addToLose wait c =
-        lose <- Set.add c lose
+    // Add configuration to win/lose set and return updated waiting list with dependencies.
+    let addTo c (eitherWinOrLose: byref<_>) wait =
+        eitherWinOrLose <- Set.add c eitherWinOrLose
         deps.[vertexOf c] |> addDeps c wait
 
-    let addToWin wait c =
-        win <- Set.add c win
-        deps.[vertexOf c] |> addDeps c wait
+    let foundWinningOrLosingStrategy () =
+        Set.exists (revSimRel initConfig) win
+        || Set.exists (simRel initConfig) lose
 
-    // Taking an input win' unlike before where I just had finalCheck be a value and used win as the set. This does not work as finalCheck becomes a static boolean value of false.
-    let finalCheck win' = Set.exists (revSimRel initConfig) win'
+    let foundWinningStrategy () = Set.exists (revSimRel initConfig) win
 
-    let rec loop wait =
-        match wait with
-        | [] -> finalCheck win
-        | _ when wonOrLost -> finalCheck win
+    let rec loop =
+        function
+        | [] -> foundWinningStrategy ()
+        | _ when foundWinningOrLosingStrategy () -> foundWinningStrategy ()
         | (s1, i, _) :: waitrest when inWinLose (s1, i) -> loop waitrest
-        | (s1, i, _) :: waitrest when isLosingConfig (s1, i) -> addToLose waitrest (s1, i) |> loop
-        | (s1, i, _) :: waitrest when isWinningConfig (s1, i) -> addToWin waitrest (s1, i) |> loop
+        | (s1, i, _) :: waitrest when inLosingStrategy (s1, i) -> addTo (s1, i) &lose waitrest |> loop
+        | (s1, i, _) :: waitrest when inWinningStrategy (s1, i) -> addTo (s1, i) &win waitrest |> loop
         | (_, i, s2) :: waitrest when inWinLose (s2, next i) -> loop waitrest
         | (s1, i, s2) :: waitrest when disc.Contains(vertexOf (s2, next i)) ->
             let v = vertexOf (s2, next i)
@@ -167,20 +175,33 @@ type OnTheFlySolver<'S when 'S: comparison>
             deps.[v] <- [ (s1, i, s2) ]
 
             if Set.contains s2 goals then
-                addToWin wait config |> loop
+                addTo config &win waitrest |> loop
             else
-                load config waitrest |> loop
+                addSuccessors config waitrest |> loop
 
     member _.solve =
-        disc.Add(vertexOf initConfig) |> ignore
-        // if Set.contains s0 goals then addToWin initConfig
-        load initConfig [] |> loop
+        // Reset. 
+        toVertex.Clear |> ignore
+        toConfig.Clear |> ignore
+        disc.Clear |> ignore
+        win <- Set.empty
+        lose <- Set.empty
+        deps.Clear |> ignore
 
-// TODO Does it make sense to always convert to and from intergers? Could
-// the win and dependencies arraylists be dictionaries in stead?
-// let toNode = new Dictionary<int, 'N>()
-// let toVertex = new Dictionary<'N, int>()
-// I am trying doing that below.
+        // Add initial values. 
+        deps.Insert(vertexOf initConfig, [])
+        disc.Add(vertexOf initConfig) |> ignore
+
+        // Initialize algorithm. 
+        let state, _ = initConfig
+
+        if Set.contains state goals then
+            addTo initConfig &win []
+        else
+            []
+        |> addSuccessors initConfig
+        |> loop
+
 
 // Notes
 // - System.Collections.ArrayList is not recommended:
@@ -192,6 +213,3 @@ type OnTheFlySolver<'S when 'S: comparison>
 //   https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1?view=net-6.0
 // - Dictionary is implemented as a hash table:
 //   https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1?view=net-6.0
-
-
-// Assuming i1 <> i2 => not (sim (s1, i1) (s2, i2))
