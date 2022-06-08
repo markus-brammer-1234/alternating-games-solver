@@ -11,7 +11,7 @@ let next player =
     | One -> Two
     | Two -> One
 
-type Game<'S when 'S: comparison> = ('S -> Set<'S>) * ('S -> Set<'S>) * Set<'S>
+type Game<'S when 'S: comparison> = ('S -> Set<'S>) * ('S -> Set<'S>) * ('S -> bool)
 
 type Vertex = int
 
@@ -24,7 +24,7 @@ type OnTheFlySolver<'S when 'S: comparison>
         initConfig: Config<'S>
     ) =
 
-    let edgesOne, edgesTwo, goals = game
+    let edgesOne, edgesTwo, isGoalState = game
 
     // Reversed simulation relation.
     let revSimRel c2 c1 = simRel c1 c2
@@ -174,7 +174,7 @@ type OnTheFlySolver<'S when 'S: comparison>
             disc.Add(v) |> ignore
             deps.[v] <- [ (s1, i, s2) ]
 
-            if Set.contains s2 goals then
+            if isGoalState s2 then
                 addTo config &win waitrest |> loop
             else
                 addSuccessors config waitrest |> loop
@@ -193,9 +193,9 @@ type OnTheFlySolver<'S when 'S: comparison>
         disc.Add(vertexOf initConfig) |> ignore
 
         // Initialize algorithm. 
-        let state, _ = initConfig
+        let initState, _ = initConfig
 
-        if Set.contains state goals then
+        if isGoalState initState then
             addTo initConfig &win []
         else
             []
